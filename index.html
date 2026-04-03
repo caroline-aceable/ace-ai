@@ -331,25 +331,6 @@ footer .footer-links a { font-size: 13px; }
           <a href="https://vibe-coding-101-production.up.railway.app/" class="learn-btn" target="_blank" rel="noopener" aria-label="Go to Vibe Coding 101, opens in new tab">Go to Session 1 →</a>
         </div>
       </article>
-      <article class="learn-card" aria-label="Vibe Coding 102">
-        <div class="learn-header">
-          <p class="ch">Chapter 2</p>
-          <h3>Vibe Coding 102</h3>
-          <p class="sub">Level Up — Built on Session 1</p>
-        </div>
-        <div class="learn-body">
-          <p>You survived the terminal. Now let's actually do something with it. One window, not three — VS Code, terminal, and Claude Code are all nesting dolls inside each other.</p>
-          <ul class="learn-topics" aria-label="Topics covered">
-            <li>The nesting dolls: VS Code → Terminal → Claude Code</li>
-            <li>Claude Desktop vs Claude Code — finally explained</li>
-            <li>The Aceable AI Starter Pack (what you actually need)</li>
-            <li>Real workflows built live, together</li>
-            <li>Your actual questions from #guild-ai, answered</li>
-            <li>A real human did this — Caroline's live demo</li>
-          </ul>
-          <a href="https://vibe-coding-102-production.up.railway.app/" class="learn-btn" target="_blank" rel="noopener" aria-label="Go to Vibe Coding 102, opens in new tab">Go to Session 2 →</a>
-        </div>
-      </article>
     </div>
   </div>
 </section>
@@ -623,7 +604,7 @@ going forward.</pre>
       <span class="icon" aria-hidden="true">📋</span>
       <div>
         <h4>The short version</h4>
-        <p>AI use at Aceable is not just allowed — it's expected. But every Ace is responsible for the accuracy, quality, and integrity of anything created with AI tools. When in doubt, read the full policy or reach out to <a href="mailto:security@aceable.com" style="color:var(--teal-dkr);font-weight:700;">security@aceable.com</a>.</p>
+        <p>AI use at Aceable is not just allowed — it's expected. But every Ace is responsible for the accuracy, quality, and integrity of anything created with AI tools. When in doubt, read the full policy or reach out to <a href="/cdn-cgi/l/email-protection#cbb8aea8beb9a2bfb28baaa8aeaaa9a7aee5a8a4a6" style="color:var(--teal-dkr);font-weight:700;"><span class="__cf_email__" data-cfemail="c1b2a4a2b4b3a8b5b881a0a2a4a0a3ada4efa2aeac">[email&#160;protected]</span></a>.</p>
       </div>
     </div>
 
@@ -885,7 +866,7 @@ After completing the audit, check for a CLAUDE.md at the project root.
   </nav>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function copyAudit(btn) {
   const text = document.getElementById('auditPrompt').textContent;
   navigator.clipboard.writeText(text).then(() => {
@@ -909,12 +890,3 @@ function filterPrompts(cat) {
 
 function copyPrompt(btn) {
   const text = btn.previousElementSibling.textContent;
-  navigator.clipboard.writeText(text).then(() => {
-    btn.textContent = '✓ Copied!';
-    btn.classList.add('ok');
-    setTimeout(() => { btn.textContent = 'Copy prompt'; btn.classList.remove('ok'); }, 2000);
-  });
-}
-</script>
-</body>
-</html>
