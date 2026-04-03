@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ace.AI — Your AI Home at Aceable</title>
+<meta name="description" content="Everything you need to get started with AI at Aceable. Setup guides, learning resources, prompts, and community.">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal: #12BDCD;
+  --teal-dk: #197886;
+  --teal-dkr: #1D5562;
+  --teal-lt: #E7FAFA;
+  --teal-ltr: #F3FBFC;
+  --teal-ltst: #F8FDFD;
+  --green: #2CE1AB;
+  --green-dk: #29B58F;
+  --green-lt: #E9FCF6;
+  --pink: #FF3072;
+  --pink-lt: #FFF4F8;
+  --blue: #2689CA;
+  --blue-lt: #EFF6FC;
+  --yellow: #FCB11A;
+  --yellow-lt: #FEF8EC;
+  --black: #21333F;
+  --text: #21333F;
+  --text2: #3D5466;
+  --text3: #6B8499;
+  --border: #C4EEF2;
+  --border2: #88DEE6;
+  --bg: #FFFFFF;
+  --bg2: #F8FDFD;
+  --bg3: #F3FBFC;
+  --r: 10px;
+  --r-lg: 16px;
+  --shadow: 0 2px 12px rgba(18,189,205,.1);
+  --shadow-lg: 0 8px 32px rgba(18,189,205,.18);
+  font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { background: var(--bg); color: var(--text); line-height: 1.6; font-size: 16px; }
+
+/* ADA skip link */
+.skip { position: absolute; top: -100%; left: 1rem; background: var(--teal); color: #fff; padding: .5rem 1rem; border-radius: 0 0 var(--r) var(--r); font-weight: 700; text-decoration: none; z-index: 9999; }
+.skip:focus { top: 0; }
+
+/* NAV */
+nav { background: var(--black); position: sticky; top: 0; z-index: 100; }
+.nav-inner { max-width: 1120px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; height: 62px; }
+.nav-logo { font-size: 22px; font-weight: 900; color: #fff; text-decoration: none; letter-spacing: -.03em; }
+.nav-logo span { color: var(--teal); }
+.nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
+.nav-links a { color: rgba(255,255,255,.75); text-decoration: none; font-size: 14px; font-weight: 600; transition: color .15s; }
+.nav-links a:hover, .nav-links a:focus { color: #fff; }
+.nav-cta { background: var(--teal) !important; color: #fff !important; padding: 7px 18px !important; border-radius: 20px !important; font-weight: 800 !important; }
+.nav-cta:hover { background: var(--teal-dk) !important; }
+@media(max-width:680px){.nav-links{display:none}}
+
+/* HERO */
+.hero { background: var(--black); color: #fff; padding: 5rem 1.5rem 4rem; text-align: center; position: relative; overflow: hidden; }
+.hero-glow-1 { position: absolute; top: -20%; left: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(18,189,205,.2) 0%, transparent 70%); pointer-events: none; }
+.hero-glow-2 { position: absolute; bottom: -20%; right: -10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(44,225,171,.15) 0%, transparent 70%); pointer-events: none; }
+.hero-badge { display: inline-block; background: rgba(18,189,205,.15); color: var(--teal); border: 1px solid rgba(18,189,205,.3); padding: 5px 16px; border-radius: 20px; font-size: 12px; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: .08em; text-transform: uppercase; }
+.hero h1 { font-size: clamp(3rem, 7vw, 5rem); font-weight: 900; letter-spacing: -.04em; line-height: 1; margin-bottom: .75rem; }
+.hero h1 span { color: var(--teal); }
+.hero-sub { font-size: clamp(1rem, 2.5vw, 1.2rem); color: rgba(255,255,255,.7); max-width: 560px; margin: 0 auto 2.5rem; line-height: 1.7; }
+.hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-teal { background: var(--teal); color: #fff; padding: 13px 28px; border-radius: var(--r); font-size: 15px; font-weight: 800; text-decoration: none; transition: background .15s, transform .1s; display: inline-block; }
+.btn-teal:hover, .btn-teal:focus { background: var(--teal-dk); transform: translateY(-1px); }
+.btn-teal:focus { outline: 3px solid var(--teal); outline-offset: 3px; }
+.btn-ghost { background: rgba(255,255,255,.08); color: #fff; border: 1.5px solid rgba(255,255,255,.25); padding: 13px 28px; border-radius: var(--r); font-size: 15px; font-weight: 700; text-decoration: none; transition: background .15s; display: inline-block; }
+.btn-ghost:hover, .btn-ghost:focus { background: rgba(255,255,255,.15); }
+.btn-ghost:focus { outline: 3px solid #fff; outline-offset: 3px; }
+.hero-stats { display: flex; gap: 3rem; justify-content: center; margin-top: 3.5rem; flex-wrap: wrap; }
+.stat-num { display: block; font-size: 2.25rem; font-weight: 900; color: var(--teal); line-height: 1; }
+.stat-lbl { font-size: 13px; color: rgba(255,255,255,.55); margin-top: 4px; font-weight: 600; }
+
+/* SECTIONS */
+section { padding: 4.5rem 1.5rem; }
+.bg-lt { background: var(--bg2); }
+.bg-ltr { background: var(--bg3); }
+.inner { max-width: 1120px; margin: 0 auto; }
+.sec-label { font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--teal-dk); margin-bottom: .4rem; }
+.sec-title { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; color: var(--text); margin-bottom: .5rem; letter-spacing: -.02em; line-height: 1.2; }
+.sec-desc { font-size: 15px; color: var(--text2); max-width: 580px; margin-bottom: 2.5rem; line-height: 1.7; }
+
+/* GET STARTED */
+.guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.guide-card { background: var(--bg); border: 2px solid var(--border); border-radius: var(--r-lg); padding: 2rem; text-decoration: none; color: var(--text); display: flex; flex-direction: column; transition: border-color .2s, box-shadow .2s, transform .15s; box-shadow: var(--shadow); }
+.guide-card:hover, .guide-card:focus { border-color: var(--teal); box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+.guide-card:focus { outline: 3px solid var(--teal); outline-offset: 2px; }
+.guide-icon { font-size: 2.75rem; margin-bottom: 1rem; }
+.guide-card h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: .5rem; }
+.guide-card p { font-size: 14px; color: var(--text2); line-height: 1.6; flex: 1; margin-bottom: 1.25rem; }
+.guide-time { font-size: 12px; color: var(--text3); font-weight: 700; margin-bottom: 1rem; }
+.guide-link { font-size: 14px; font-weight: 800; color: var(--teal-dk); display: flex; align-items: center; gap: 5px; }
+.guide-link::after { content: '→'; transition: transform .15s; }
+.guide-card:hover .guide-link::after { transform: translateX(4px); }
+.badge-pc { background: var(--blue-lt); color: var(--blue); font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 20px; display: inline-block; margin-bottom: 1rem; }
+.badge-mac { background: var(--green-lt); color: var(--green-dk); font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 20px; display: inline-block; margin-bottom: 1rem; }
+.badge-conf { background: var(--teal-lt); color: var(--teal-dk); font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 20px; display: inline-block; margin-bottom: 1rem; }
+
+/* LEARN */
+.learn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+.learn-card { background: var(--bg); border: 2px solid var(--border); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; transition: box-shadow .2s, transform .15s; }
+.learn-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+.learn-header { background: var(--black); padding: 1.75rem 2rem; color: #fff; }
+.learn-header .ch { font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); margin-bottom: .3rem; }
+.learn-header h3 { font-size: 1.3rem; font-weight: 900; margin-bottom: .25rem; }
+.learn-header .sub { font-size: 13px; color: rgba(255,255,255,.55); font-weight: 600; }
+.learn-body { padding: 1.75rem 2rem; flex: 1; display: flex; flex-direction: column; }
+.learn-body p { font-size: 14px; color: var(--text2); line-height: 1.7; margin-bottom: 1rem; flex: 1; }
+.learn-topics { list-style: none; margin-bottom: 1.5rem; }
+.learn-topics li { font-size: 13.5px; color: var(--text2); padding: 4px 0; display: flex; gap: 8px; }
+.learn-topics li::before { content: '✓'; color: var(--green-dk); font-weight: 800; flex-shrink: 0; }
+.learn-btn { display: block; background: var(--teal); color: #fff; padding: 11px 20px; border-radius: var(--r); font-size: 14px; font-weight: 800; text-decoration: none; text-align: center; transition: background .15s; }
+.learn-btn:hover, .learn-btn:focus { background: var(--teal-dk); }
+.learn-btn:focus { outline: 3px solid var(--teal); outline-offset: 2px; }
+
+/* PROMPTS */
+.prompt-filter { display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.filter-btn { background: var(--bg); border: 1.5px solid var(--border2); color: var(--text2); padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; transition: all .15s; }
+.filter-btn:hover, .filter-btn.active { background: var(--teal); border-color: var(--teal); color: #fff; }
+.filter-btn:focus { outline: 3px solid var(--teal); outline-offset: 2px; }
+.prompts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; }
+.prompt-card { background: var(--bg); border: 1.5px solid var(--border); border-radius: var(--r); padding: 1.25rem; box-shadow: var(--shadow); }
+.prompt-card[hidden] { display: none; }
+.prompt-cat { font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--teal-dk); margin-bottom: .4rem; }
+.prompt-title { font-size: 14px; font-weight: 800; color: var(--text); margin-bottom: .75rem; }
+.prompt-text { font-family: 'Courier New', monospace; font-size: 12px; color: var(--text2); background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: .75rem; margin-bottom: .75rem; line-height: 1.55; white-space: pre-wrap; word-break: break-word; }
+.prompt-copy { background: transparent; border: 1.5px solid var(--border2); color: var(--text2); padding: 5px 14px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; transition: all .15s; }
+.prompt-copy:hover, .prompt-copy:focus { background: var(--teal); border-color: var(--teal); color: #fff; }
+.prompt-copy:focus { outline: 3px solid var(--teal); outline-offset: 2px; }
+.prompt-copy.ok { background: var(--green); border-color: var(--green); color: #fff; }
+
+/* RESOURCES */
+.resources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1.25rem; }
+.res-card { background: var(--bg); border: 1.5px solid var(--border); border-radius: var(--r); padding: 1.5rem; text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: .5rem; box-shadow: var(--shadow); transition: border-color .2s, transform .15s; }
+.res-card:hover, .res-card:focus { border-color: var(--teal); transform: translateY(-2px); }
+.res-card:focus { outline: 3px solid var(--teal); outline-offset: 2px; }
+.res-icon { font-size: 2rem; }
+.res-card h3 { font-size: 15px; font-weight: 800; }
+.res-card p { font-size: 13px; color: var(--text2); line-height: 1.5; flex: 1; }
+.res-link { font-size: 13px; color: var(--teal-dk); font-weight: 700; margin-top: .25rem; }
+
+/* FAQ */
+.faq-list { display: flex; flex-direction: column; gap: .75rem; max-width: 820px; }
+details { background: var(--bg); border: 1.5px solid var(--border); border-radius: var(--r); overflow: hidden; transition: border-color .2s; }
+details[open] { border-color: var(--teal); }
+summary { padding: 1.1rem 1.25rem; font-size: 15px; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; list-style: none; color: var(--text); }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: '+'; font-size: 1.4rem; font-weight: 300; color: var(--text3); flex-shrink: 0; transition: transform .2s; line-height: 1; }
+details[open] summary::after { transform: rotate(45deg); color: var(--teal); }
+.faq-body { padding: 1rem 1.25rem 1.25rem; font-size: 14.5px; color: var(--text2); line-height: 1.7; border-top: 1px solid var(--border); }
+.faq-body strong { color: var(--text); font-weight: 700; }
+.faq-body a { color: var(--teal-dk); font-weight: 700; }
+
+/* GLOSSARY */
+.gloss-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+.gloss-card { background: var(--bg); border: 1.5px solid var(--border); border-radius: var(--r); padding: 1.25rem; }
+.gloss-term { font-size: 15px; font-weight: 800; color: var(--teal-dk); margin-bottom: .25rem; display: flex; align-items: center; gap: .5rem; }
+.gloss-aka { font-size: 11px; color: var(--text3); font-weight: 700; background: var(--bg2); padding: 2px 8px; border-radius: 10px; }
+.gloss-plain { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: .35rem; }
+.gloss-desc { font-size: 13px; color: var(--text2); line-height: 1.55; }
+
+/* CALLOUT BANNER */
+.callout-banner { background: var(--teal-lt); border: 2px solid var(--teal); border-radius: var(--r-lg); padding: 1.75rem 2rem; display: flex; gap: 1.25rem; align-items: flex-start; margin-bottom: 2rem; }
+.callout-banner .icon { font-size: 1.75rem; flex-shrink: 0; }
+.callout-banner h4 { font-size: 16px; font-weight: 800; color: var(--teal-dkr); margin-bottom: .3rem; }
+.callout-banner p { font-size: 14px; color: var(--teal-dkr); line-height: 1.6; }
+.callout-banner ol { padding-left: 1.25rem; margin-top: .5rem; }
+.callout-banner ol li { font-size: 14px; color: var(--teal-dkr); line-height: 1.7; }
+
+/* SECURITY */
+.security-hero { background: var(--black); border-radius: var(--r-lg); padding: 2rem; margin-bottom: 2rem; color: #fff; display: flex; gap: 1.25rem; align-items: flex-start; }
+.security-hero .icon { font-size: 2.5rem; flex-shrink: 0; }
+.security-hero h3 { font-size: 1.1rem; font-weight: 900; color: var(--yellow); margin-bottom: .4rem; }
+.security-hero p { font-size: 14px; color: rgba(255,255,255,.8); line-height: 1.7; }
+.security-hero strong { color: #fff; }
+.audit-box { background: var(--bg2); border: 2px solid var(--border2); border-radius: var(--r); padding: 1.5rem; margin-bottom: 1.5rem; }
+.audit-box h4 { font-size: 15px; font-weight: 800; color: var(--text); margin-bottom: .4rem; }
+.audit-box p { font-size: 14px; color: var(--text2); line-height: 1.65; margin-bottom: 1rem; }
+.audit-prompt { font-family: 'Courier New', monospace; font-size: 11.5px; color: var(--text2); background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 1rem; max-height: 280px; overflow-y: auto; line-height: 1.6; white-space: pre-wrap; word-break: break-word; margin-bottom: 1rem; }
+.audit-copy { background: var(--yellow); border: none; color: var(--black); padding: 10px 22px; border-radius: var(--r); font-size: 14px; font-weight: 800; cursor: pointer; font-family: inherit; transition: all .15s; }
+.audit-copy:hover, .audit-copy:focus { background: #e09e15; }
+.audit-copy:focus { outline: 3px solid var(--yellow); outline-offset: 2px; }
+.audit-copy.ok { background: var(--green); color: var(--black); }
+.security-rules { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin-top: 2rem; }
+.sec-rule { background: var(--bg); border: 1.5px solid var(--border); border-radius: var(--r); padding: 1.25rem; }
+.sec-rule .rule-icon { font-size: 1.5rem; margin-bottom: .5rem; }
+.sec-rule h4 { font-size: 14px; font-weight: 800; color: var(--text); margin-bottom: .4rem; }
+.sec-rule p { font-size: 13px; color: var(--text2); line-height: 1.55; }
+.sec-rule.red { border-color: var(--pink); background: var(--pink-lt); }
+.sec-rule.red h4 { color: #c0144a; }
+.yellow-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--yellow); color: var(--black); font-size: 12px; font-weight: 800; padding: 4px 12px; border-radius: 20px; margin-bottom: 1.25rem; }
+
+/* FOOTER */
+footer { background: var(--black); color: rgba(255,255,255,.6); padding: 3rem 1.5rem; text-align: center; }
+footer .footer-logo { font-size: 24px; font-weight: 900; color: #fff; letter-spacing: -.03em; margin-bottom: .5rem; }
+footer .footer-logo span { color: var(--teal); }
+footer p { font-size: 13px; line-height: 1.7; max-width: 500px; margin: 0 auto .75rem; }
+footer a { color: var(--teal); text-decoration: none; font-weight: 700; }
+footer a:hover { color: #fff; }
+footer .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem; }
+footer .footer-links a { font-size: 13px; }
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .hero-stats { gap: 1.75rem; }
+  section { padding: 3rem 1rem; }
+}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to main content</a>
+
+<nav aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" aria-label="Ace.AI home">Ace<span>.AI</span></a>
+    <ul class="nav-links" role="list">
+      <li><a href="#get-started">Get Started</a></li>
+      <li><a href="#learn">Learn</a></li>
+      <li><a href="#prompts">Prompts</a></li>
+      <li><a href="#resources">Resources</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#policy">Policy</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="https://aceableai.slack.com/channels/guild-ai" class="nav-cta" target="_blank" rel="noopener">#guild-ai</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- HERO -->
+<header class="hero" role="banner">
+  <div class="hero-glow-1" aria-hidden="true"></div>
+  <div class="hero-glow-2" aria-hidden="true"></div>
+  <div class="hero-badge" aria-label="Internal Aceable resource">⚡ Aceable Internal</div>
+  <h1>Ace<span>.AI</span></h1>
+  <p class="hero-sub">Your home for everything AI at Aceable. Set up, learn, get inspired, and connect with the team that's building this together.</p>
+  <div class="hero-btns">
+    <a href="#get-started" class="btn-teal">Get Set Up →</a>
+    <a href="#learn" class="btn-ghost">Start Learning</a>
+  </div>
+  <div class="hero-stats" role="list" aria-label="Key facts">
+    <div class="hero-stat" role="listitem">
+      <span class="stat-num">2</span>
+      <span class="stat-lbl">Setup Guides<br>(Mac + PC)</span>
+    </div>
+    <div class="hero-stat" role="listitem">
+      <span class="stat-num">101</span>
+      <span class="stat-lbl">Zero coding<br>experience needed</span>
+    </div>
+    <div class="hero-stat" role="listitem">
+      <span class="stat-num">✦</span>
+      <span class="stat-lbl">Powered by<br>Claude</span>
+    </div>
+  </div>
+</header>
+
+<!-- GET STARTED -->
+<section id="get-started" aria-labelledby="start-title">
+  <div class="inner">
+    <p class="sec-label">Step 1</p>
+    <h2 class="sec-title" id="start-title">Get Set Up</h2>
+    <p class="sec-desc">New to Claude Code? Start here. Pick your computer type and follow the step-by-step guide — no tech experience needed.</p>
+    <div class="callout-banner" role="note" aria-label="Important first step">
+      <span class="icon" aria-hidden="true">🎟️</span>
+      <div>
+        <h4>First: Request access from IT</h4>
+        <p>Before anything else, you need IT to provision your account. Open Slack, type <strong>/assist</strong>, and submit a ticket saying <em>"Get set up on Claude Code."</em> Usually handled by Eric — expect same-day turnaround.</p>
+      </div>
+    </div>
+    <div class="guide-grid">
+      <a href="https://caroline-aceable.github.io/pc-setup-guide" class="guide-card" target="_blank" rel="noopener" aria-label="Windows PC setup guide, opens in new tab">
+        <span class="guide-icon" aria-hidden="true">🖥️</span>
+        <span class="badge-pc">Windows PC</span>
+        <h3>Set Up on Windows</h3>
+        <p>Step-by-step guide for PC users — from IT ticket all the way to your first Claude conversation. Covers both native and WSL/Ubuntu install paths.</p>
+        <p class="guide-time">⏱ About 45–60 minutes</p>
+        <span class="guide-link">Start PC setup</span>
+      </a>
+      <a href="https://caroline-aceable.github.io/mac-setup-guide" class="guide-card" target="_blank" rel="noopener" aria-label="Mac setup guide, opens in new tab">
+        <span class="guide-icon" aria-hidden="true">💻</span>
+        <span class="badge-mac">Mac</span>
+        <h3>Set Up on Mac</h3>
+        <p>Step-by-step guide for Mac users — Homebrew, nvm, Node.js, Claude Code CLI, VS Code, and the GitHub CLI. All in one place.</p>
+        <p class="guide-time">⏱ About 45–60 minutes</p>
+        <span class="guide-link">Start Mac setup</span>
+      </a>
+      <a href="https://aceable.atlassian.net/wiki/spaces/DEV/pages/4534370305/Setup+AI+On+Your+Computer" class="guide-card" target="_blank" rel="noopener" aria-label="Full Confluence guide, opens in new tab">
+        <span class="guide-icon" aria-hidden="true">📄</span>
+        <span class="badge-conf">Confluence</span>
+        <h3>Full Confluence Guide</h3>
+        <p>Kevin's official Confluence page — the full setup reference including Phase 2 (GitHub CLI, boilerplate repo, VS Code) and becoming a pro.</p>
+        <p class="guide-time">📖 Complete reference</p>
+        <span class="guide-link">Open in Confluence</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- LEARN -->
+<section id="learn" class="bg-lt" aria-labelledby="learn-title">
+  <div class="inner">
+    <p class="sec-label">Step 2</p>
+    <h2 class="sec-title" id="learn-title">Learn</h2>
+    <p class="sec-desc">Already set up? These sessions will take you from "what is a terminal" to building real tools — at your own pace, no coding experience required.</p>
+    <div class="learn-grid">
+      <article class="learn-card" aria-label="Vibe Coding 101">
+        <div class="learn-header">
+          <p class="ch">Chapter 1</p>
+          <h3>Vibe Coding 101</h3>
+          <p class="sub">A Panic! At The Terminal Production</p>
+        </div>
+        <div class="learn-body">
+          <p>The basics of Claude Code — for non-developers. Learn what the terminal is, how to talk to Claude Code, and build something real. Zero coding experience required.</p>
+          <ul class="learn-topics" aria-label="Topics covered">
+            <li>What the terminal is (it's just a text box)</li>
+            <li>Getting started with Claude Code</li>
+            <li>The Jargon Decoder — plain English glossary</li>
+            <li>4 real-world workflows you can use today</li>
+            <li>Tips, tricks, and common gotchas</li>
+            <li>Build your first tool — yes, you</li>
+          </ul>
+          <a href="https://vibe-coding-101-production.up.railway.app/" class="learn-btn" target="_blank" rel="noopener" aria-label="Go to Vibe Coding 101, opens in new tab">Go to Session 1 →</a>
+        </div>
+      </article>
+      <article class="learn-card" aria-label="Vibe Coding 102">
+        <div class="learn-header">
+          <p class="ch">Chapter 2</p>
+          <h3>Vibe Coding 102</h3>
+          <p class="sub">Level Up — Built on Session 1</p>
+        </div>
+        <div class="learn-body">
+          <p>You survived the terminal. Now let's actually do something with it. One window, not three — VS Code, terminal, and Claude Code are all nesting dolls inside each other.</p>
+          <ul class="learn-topics" aria-label="Topics covered">
+            <li>The nesting dolls: VS Code → Terminal → Claude Code</li>
+            <li>Claude Desktop vs Claude Code — finally explained</li>
+            <li>The Aceable AI Starter Pack (what you actually need)</li>
+            <li>Real workflows built live, together</li>
+            <li>Your actual questions from #guild-ai, answered</li>
+            <li>A real human did this — Caroline's live demo</li>
+          </ul>
+          <a href="https://vibe-coding-102-production.up.railway.app/" class="learn-btn" target="_blank" rel="noopener" aria-label="Go to Vibe Coding 102, opens in new tab">Go to Session 2 →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PROMPTS -->
+<section id="prompts" aria-labelledby="prompts-title">
+  <div class="inner">
+    <p class="sec-label">Use it now</p>
+    <h2 class="sec-title" id="prompts-title">Starter Prompts</h2>
+    <p class="sec-desc">Copy and paste these directly into Claude. No setup required — just open claude.ai, paste, and go.</p>
+    <div class="prompt-filter" role="group" aria-label="Filter prompts by category">
+      <button class="filter-btn active" onclick="filterPrompts('all')" aria-pressed="true">All</button>
+      <button class="filter-btn" onclick="filterPrompts('writing')" aria-pressed="false">Writing</button>
+      <button class="filter-btn" onclick="filterPrompts('meetings')" aria-pressed="false">Meetings</button>
+      <button class="filter-btn" onclick="filterPrompts('analysis')" aria-pressed="false">Analysis</button>
+      <button class="filter-btn" onclick="filterPrompts('tools')" aria-pressed="false">Tools</button>
+    </div>
+    <div class="prompts-grid" id="promptsGrid" role="list">
+
+      <div class="prompt-card" data-cat="meetings" role="listitem">
+        <p class="prompt-cat">Meetings</p>
+        <p class="prompt-title">Meeting Notes → Clean Summary</p>
+        <pre class="prompt-text">Read my meeting-notes.txt and create a clean summary with:
+- A brief overview paragraph
+- Key decisions that were made
+- Action items with owners and due dates
+- Next meeting date
+Make it professional but friendly. Save as meeting-summary.md</pre>
+        <button class="prompt-copy" onclick="copyPrompt(this)" aria-label="Copy meeting summary prompt">Copy prompt</button>
+      </div>
+
+      <div class="prompt-card" data-cat="writing" role="listitem">
+        <p class="prompt-cat">Writing</p>
+        <p class="prompt-title">Write an SOP in 60 Seconds</p>
+        <pre class="prompt-text">Create a standard operating procedure for [YOUR PROCESS].
+The steps go like this: [DESCRIBE IN PLAIN ENGLISH].
+Make it professional with clear steps, decision points,
+and edge cases. Save as [name]-sop.md</pre>
+        <button class="prompt-copy" onclick="copyPrompt(this)" aria-label="Copy SOP prompt">Copy prompt</button>
+      </div>
+
+      <div class="prompt-card" data-cat="analysis" role="listitem">
+        <p class="prompt-cat">Analysis</p>
+        <p class="prompt-title">Weekly Highlights from Multiple Files</p>
+        <pre class="prompt-text">Read the files in my /reports folder.
+Pull out any lines with "highlight", "action item",
+or "priority". Combine them into a formatted weekly
+summary with sections for each report.
+Save as weekly-highlights-[today's date].md</pre>
+        <button class="prompt-copy" onclick="copyPrompt(this)" aria-label="Copy weekly highlights prompt">Copy prompt</button>
+      </div>
+
+      <div class="prompt-card" data-cat="tools" role="listitem">
+        <p class="prompt-cat">Tools</p>
+        <p class="prompt-title">Build a Simple Browser Tool</p>
+        <pre class="prompt-text">Build me a simple HTML tool where I can [DESCRIBE WHAT IT DOES].
+Make it look clean and professional with:
+- Clear input area
+- A button to run the action
+- Output area that shows results
+- A "Copy" button
+Save as my-tool.html</pre>
+        <button class="prompt-copy" onclick="copyPrompt(this)" aria-label="Copy tool builder prompt">Copy prompt</button>
+      </div>
+
+      <div class="prompt-card" data-cat="writing" role="listitem">
+        <p class="prompt-cat">Writing</p>
+        <p class="prompt-title">Rewrite for Clarity</p>
+        <pre class="prompt-text">Read this text and rewrite it to be clearer and
+more concise. Keep the same meaning but make it
+easier to understand. Aim for a friendly but
+professional tone:
+
+[PASTE YOUR TEXT HERE]</pre>
+        <button class="prompt-copy" onclick="copyPrompt(this)" aria-label="Copy rewrite prompt">Copy prompt</button>
+      </div>
+
+      <div class="prompt-card" data-cat="meetings" role="listitem">
+        <p class="prompt-cat">Meetings</p>
+        <p class="prompt-title">Create an Agenda</p>
+        <pre class="prompt-text">Create a meeting agenda for a [LENGTH] meeting about [TOPIC].
+Attendees: [LIST ROLES OR NAMES]
+Goal: [WHAT SHOULD BE DECIDED OR DISCUSSED]
+Format it with time blocks, discussion points,
+and a decision/action item section at the end.</pre>
+        <button class="prompt-copy" onclick="copyPrompt(this)" aria-label="Copy agenda prompt">Copy prompt</button>
+      </div>
+
+      <div class="prompt-card" data-cat="analysis" role="listitem">
+        <p class="prompt-cat">Analysis</p>
+        <p class="prompt-title">Summarize a Document</p>
+        <pre class="prompt-text">Read [FILENAME] and give me:
+1. A 2-sentence summary of what it's about
+2. The 3 most important points
+3. Any action items or decisions needed
+4. One thing that's unclear or missing</pre>
+        <button class="prompt-copy" onclick="copyPrompt(this)" aria-label="Copy document summary prompt">Copy prompt</button>
+      </div>
+
+      <div class="prompt-card" data-cat="tools" role="listitem">
+        <p class="prompt-cat">Tools</p>
+        <p class="prompt-title">Automate a Recurring Task</p>
+        <pre class="prompt-text">I do this task every [day/week]: [DESCRIBE THE TASK].
+It involves: [LIST THE STEPS YOU DO MANUALLY].
+Create a script that does this automatically.
+Walk me through how to run it so I can use it
+going forward.</pre>
+        <button class="prompt-copy" onclick="copyPrompt(this)" aria-label="Copy automation prompt">Copy prompt</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section id="resources" class="bg-lt" aria-labelledby="resources-title">
+  <div class="inner">
+    <p class="sec-label">Links</p>
+    <h2 class="sec-title" id="resources-title">Resources</h2>
+    <p class="sec-desc">Everything in one place — official docs, community, and Aceable-specific resources.</p>
+    <div class="resources-grid">
+      <a href="https://aceableai.slack.com/channels/guild-ai" class="res-card" target="_blank" rel="noopener" aria-label="Join guild-ai on Slack, opens in new tab">
+        <span class="res-icon" aria-hidden="true">💬</span>
+        <h3>#guild-ai on Slack</h3>
+        <p>The main Aceable AI community. Ask questions, share wins, get help, see what others are building.</p>
+        <span class="res-link">Open in Slack →</span>
+      </a>
+      <a href="https://claude.ai" class="res-card" target="_blank" rel="noopener" aria-label="Claude.ai, opens in new tab">
+        <span class="res-icon" aria-hidden="true">✦</span>
+        <h3>Claude.ai</h3>
+        <p>The main Claude interface. Use this for one-off tasks, questions, writing, and when you're not in VS Code.</p>
+        <span class="res-link">Open Claude →</span>
+      </a>
+      <a href="https://code.claude.com/docs/en/quickstart" class="res-card" target="_blank" rel="noopener" aria-label="Claude Code quickstart docs, opens in new tab">
+        <span class="res-icon" aria-hidden="true">📖</span>
+        <h3>Claude Code Docs</h3>
+        <p>Official Anthropic documentation for Claude Code. Quickstart, common workflows, best practices.</p>
+        <span class="res-link">Read the docs →</span>
+      </a>
+      <a href="https://aceable.atlassian.net/wiki/spaces/DEV/pages/4534370305/Setup+AI+On+Your+Computer" class="res-card" target="_blank" rel="noopener" aria-label="Aceable Confluence guide, opens in new tab">
+        <span class="res-icon" aria-hidden="true">📋</span>
+        <h3>Confluence Guide</h3>
+        <p>Kevin's full setup guide on Confluence — the official Aceable reference for getting started with AI.</p>
+        <span class="res-link">Open Confluence →</span>
+      </a>
+      <a href="https://docs.google.com/presentation/d/1QhBepxqQthtswbWnMV03C-CsVTP4_iPCA-uSvZfJiFo/edit" class="res-card" target="_blank" rel="noopener" aria-label="Claude Code training deck, opens in new tab">
+        <span class="res-icon" aria-hidden="true">📊</span>
+        <h3>Training Deck</h3>
+        <p>The official Aceable Claude Code internal training slide deck. Great for onboarding and sharing with your team.</p>
+        <span class="res-link">Open slides →</span>
+      </a>
+      <a href="https://vibe-coding-101-production.up.railway.app/#resources" class="res-card" target="_blank" rel="noopener" aria-label="More learning resources, opens in new tab">
+        <span class="res-icon" aria-hidden="true">🎓</span>
+        <h3>More Learning</h3>
+        <p>Additional tips, tutorials, and resources compiled from the Vibe Coding session series.</p>
+        <span class="res-link">See all resources →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" aria-labelledby="faq-title">
+  <div class="inner">
+    <p class="sec-label">From #guild-ai</p>
+    <h2 class="sec-title" id="faq-title">Questions we hear all the time</h2>
+    <p class="sec-desc">These came up again and again in #guild-ai. Real questions, answered by the team.</p>
+    <div class="faq-list">
+
+      <details>
+        <summary><span>How do I get access to Claude or ChatGPT?</span></summary>
+        <div class="faq-body">
+          Use the <strong>/assist</strong> slash command in any Slack channel to submit an IT ticket. Say something like "Get set up on Claude Code." It usually goes to Eric and comes back same-day. If you're not sure whether you already have access, try logging into <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a> with your Aceable email — if it works, you're in.
+        </div>
+      </details>
+
+      <details>
+        <summary><span>I see two accounts — "Aceable" and "Aceable Inc." Which one is right?</span></summary>
+        <div class="faq-body">
+          <strong>This one trips up a lot of people — and IT is your best resource here.</strong> There are two Claude instances and the right one for you depends on your role and how you were set up. If you're hitting usage limits unexpectedly, seeing missing features, or just not sure which account you're in — submit an IT ticket via <strong>/assist</strong> in Slack and ask them to confirm you're on the correct account. Don't assume — just ask. It takes two minutes and saves a lot of confusion.
+        </div>
+      </details>
+
+      <details>
+        <summary><span>Claude seems down or is throwing errors — is it just me?</span></summary>
+        <div class="faq-body">
+          Probably not just you. First check <a href="https://status.claude.com" target="_blank" rel="noopener">status.claude.com</a> — Anthropic posts outages there in real time. If it's a known issue, just wait it out. If the status page says everything is fine but you're still having trouble, post in <strong>#guild-ai</strong> to see if others are affected too.
+        </div>
+      </details>
+
+      <details>
+        <summary><span>Claude Code terminal vs VS Code — which should I use?</span></summary>
+        <div class="faq-body">
+          Both work, but most Aceablers have landed on <strong>VS Code</strong>. It shows your files on the left, has a built-in terminal (press Ctrl+` to open it), and keeps everything in one window. Think of it as nesting dolls: VS Code is the outer shell, the terminal lives inside it, and Claude Code lives inside the terminal.<br><br>
+          Start with VS Code. Use the terminal-only approach only if you have a specific reason to.
+        </div>
+      </details>
+
+      <details>
+        <summary><span>My sessions get slow or weird after a while. What's going on?</span></summary>
+        <div class="faq-body">
+          This is the <strong>context window</strong> filling up — Claude's short-term memory for a conversation. The longer you go, the more noise accumulates and the worse the answers get.<br><br>
+          <strong>Two fixes:</strong><br>
+          • Type <code>/clear</code> to start completely fresh (wipes history, fast)<br>
+          • Type <code>/compact</code> to summarize and free up space without losing all context<br><br>
+          Best practice from the team: use <code>/clear</code> between different tasks rather than letting one session grow forever. One terminal tab per project works well.
+        </div>
+      </details>
+
+      <details>
+        <summary><span>How do I get access to Aceable's GitHub repos?</span></summary>
+        <div class="faq-body">
+          Submit an IT ticket via <strong>/assist</strong> in Slack asking for "Common Read Only role on aceable repo." Make sure your GitHub username follows the <strong>ace-firstname-lastinitial</strong> format so IT can find you. Once added, you'll get an email from GitHub — accept that invite before trying to clone anything.
+        </div>
+      </details>
+
+      <details>
+        <summary><span>I lost a whole day of work in v0. How do I avoid this?</span></summary>
+        <div class="faq-body">
+          Connect your v0 project to a GitHub repository from the start — that way every version is saved automatically. Also: watch out for the phrase <strong>"I need to write out the full file content"</strong> appearing in v0's chat. That's a warning sign it's about to rewrite something completely, which often breaks things. When you see it, stop and clarify exactly what you want changed before letting it proceed.
+        </div>
+      </details>
+
+      <details>
+        <summary><span>Is it safe to sign into Slack or Google through ChatGPT Agent mode?</span></summary>
+        <div class="faq-body">
+          <strong>Not without checking first.</strong> Agent mode creates a virtual computer that can log into services on your behalf — which means it could have access to things you didn't intend. Before connecting any work account through an AI agent, run it by Kevin or post in <strong>#guild-ai</strong>. The general rule: use designated group or service accounts, never your personal work email or any account linked to billing or password resets.
+        </div>
+      </details>
+
+      <details>
+        <summary><span>What VS Code extensions are actually worth it?</span></summary>
+        <div class="faq-body">
+          The team's crowd-sourced list: <strong>Claude Code</strong> (obviously), <strong>Peacock</strong> (color-codes different VS Code windows — lifesaver when you have multiple repos open), and PDF/XLSX viewer extensions so you can preview files without leaving VS Code. Beyond that, ask Claude: "What VS Code extensions would help me with [what you do]?" and it'll give you a personalized list.
+        </div>
+      </details>
+
+      <details>
+        <summary><span>How do I get a new AI tool approved?</span></summary>
+        <div class="faq-body">
+          Post in <strong>#guild-ai</strong> and tag Kevin. There's an approved tools list on Confluence — if something isn't on it, it needs a quick review before you use it on work projects. Most requests move fast. Don't sit on a free trial waiting — just ask early so you don't lose access.
+        </div>
+      </details>
+
+      <details>
+        <summary><span>Can Claude connect to Google Drive or Confluence?</span></summary>
+        <div class="faq-body">
+          Yes — Claude has connectors for both. For Confluence: go to Claude settings, find the Atlassian connector, and authorize it. Once connected, Claude can read and update Confluence pages directly. For Google Drive: the connector works but can be finicky — if it's not finding your files, try using "Add from Drive" to search directly rather than pasting a link. If you're in the wrong Claude account (Aceable Inc instead of Aceable), connectors won't work right either.
+        </div>
+      </details>
+
+      <details>
+        <summary><span>Can I break my computer by typing in the terminal?</span></summary>
+        <div class="faq-body">
+          <strong>No.</strong> The terminal is just a text box. If something looks wrong, close the window and open a fresh one — that fixes 90% of issues. If Claude does something unexpected, tell it: "undo that" or "go back to how it was." It's not fragile. The worst that usually happens is an error message, not actual damage.
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- AI POLICY -->
+<section id="policy" class="bg-lt" aria-labelledby="policy-title">
+  <div class="inner">
+    <p class="sec-label">Official guidance</p>
+    <h2 class="sec-title" id="policy-title">Aceable AI Policy</h2>
+    <p class="sec-desc">Aceable encourages the use of AI tools — and every Ace is responsible for using them safely and accurately. Here's what you need to know.</p>
+
+    <div class="callout-banner" role="note">
+      <span class="icon" aria-hidden="true">📋</span>
+      <div>
+        <h4>The short version</h4>
+        <p>AI use at Aceable is not just allowed — it's expected. But every Ace is responsible for the accuracy, quality, and integrity of anything created with AI tools. When in doubt, read the full policy or reach out to <a href="mailto:security@aceable.com" style="color:var(--teal-dkr);font-weight:700;">security@aceable.com</a>.</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem;">
+      <div>
+        <p style="font-size:13px;font-weight:800;color:var(--green-dk);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.75rem;">✓ DO</p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.6rem;">
+          <li style="font-size:14px;color:var(--text2);line-height:1.6;display:flex;gap:8px;"><span style="color:var(--green-dk);flex-shrink:0;">✓</span>Use AI for non-sensitive tasks — drafting emails, content, brainstorming</li>
+          <li style="font-size:14px;color:var(--text2);line-height:1.6;display:flex;gap:8px;"><span style="color:var(--green-dk);flex-shrink:0;">✓</span>Anonymize any personal data before using it with AI tools</li>
+          <li style="font-size:14px;color:var(--text2);line-height:1.6;display:flex;gap:8px;"><span style="color:var(--green-dk);flex-shrink:0;">✓</span>Review and vet AI output — especially in sensitive situations</li>
+          <li style="font-size:14px;color:var(--text2);line-height:1.6;display:flex;gap:8px;"><span style="color:var(--green-dk);flex-shrink:0;">✓</span>Use corporate Claude and ChatGPT accounts (configured not to train on our data)</li>
+          <li style="font-size:14px;color:var(--text2);line-height:1.6;display:flex;gap:8px;"><span style="color:var(--green-dk);flex-shrink:0;">✓</span>Seek consent when using AI in a customer-facing role</li>
+        </ul>
+      </div>
+      <div>
+        <p style="font-size:13px;font-weight:800;color:#c0144a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.75rem;">✗ DON'T</p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.6rem;">
+          <li style="font-size:14px;color:var(--text2);line-height:1.6;display:flex;gap:8px;"><span style="color:var(--pink);flex-shrink:0;">✗</span>Input employee or customer PII — names, emails, anything identifiable</li>
+          <li style="font-size:14px;color:var(--text2);line-height:1.6;display:flex;gap:8px;"><span style="color:var(--pink);flex-shrink:0;">✗</span>Use personal AI accounts for Aceable-related work (unless granted permission)</li>
+          <li style="font-size:14px;color:var(--text2);line-height:1.6;display:flex;gap:8px;"><span style="color:var(--pink);flex-shrink:0;">✗</span>Use AI for confidential, proprietary, or sensitive tasks</li>
+          <li style="font-size:14px;color:var(--text2);line-height:1.6;display:flex;gap:8px;"><span style="color:var(--pink);flex-shrink:0;">✗</span>Use real personal data in examples — always use fictional data</li>
+          <li style="font-size:14px;color:var(--text2);line-height:1.6;display:flex;gap:8px;"><span style="color:var(--pink);flex-shrink:0;">✗</span>Treat AI as a replacement for human judgment — always review the output</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="font-size:13px;font-weight:800;color:var(--text);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.75rem;">Approved tools for company-wide use</p>
+    <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem;">
+      ${["Ada","Adobe","Atlassian Tools","Claude","Google","Microsoft / GitHub Copilot","OpenAI (ChatGPT + API)","Otter","Perplexity","Zapier"].map(t=>`<span style="background:var(--teal-lt);color:var(--teal-dkr);font-size:13px;font-weight:700;padding:5px 14px;border-radius:20px;">${t}</span>`).join('')}
+    </div>
+
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+      <a href="https://aceable.atlassian.net/wiki/spaces/PC1/pages/4532830229/AI+Policy" class="learn-btn" style="display:inline-block;width:auto;" target="_blank" rel="noopener" aria-label="Read full AI policy">Read the full AI policy →</a>
+      <a href="https://aceable.atlassian.net/wiki/spaces/DEV/pages/3317235717/Aceable+AI" class="learn-btn" style="display:inline-block;width:auto;background:var(--teal-dk);" target="_blank" rel="noopener" aria-label="Aceable AI Confluence hub">Aceable AI on Confluence →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY -->
+<section id="security" aria-labelledby="security-title">
+  <div class="inner">
+    <p class="sec-label">Required for every project</p>
+    <h2 class="sec-title" id="security-title">🔒 Security</h2>
+    <p class="sec-desc">We build educational software used by teenage students. Security isn't optional — it's part of the job. Kevin has made this mandatory for every project.</p>
+
+    <div class="security-hero" role="note" aria-label="Message from Kevin">
+      <span class="icon" aria-hidden="true">🕵️</span>
+      <div>
+        <h3>Required — Kevin Nuut, AI Guild Lead</h3>
+        <p>For any project you are building, please open your project's folder, start Claude, copy/paste the audit prompt below into Claude and hit Enter. <strong>It will check for security issues, student data compliance, and safety concerns specific to Aceable.</strong> We build educational software used by teenage students. Any mishandling of student data is a legal liability under COPPA and FERPA, not just a bug. Run this on every project, every time.</p>
+      </div>
+    </div>
+
+    <div class="audit-box">
+      <div class="yellow-badge" aria-label="Required action">⚠️ Run this on every project</div>
+      <h4>The Aceable Vibe Coder Project Audit Prompt</h4>
+      <p>Open your project folder in Claude Code, copy this entire prompt, paste it into Claude, and press Enter. Claude will audit your project for security issues and flag anything that needs attention.</p>
+      <pre class="audit-prompt" id="auditPrompt" aria-label="Security audit prompt"># Aceable Vibe Coder Project Audit
+
+You are auditing this project for security, legal compliance, and operational safety. We build educational software used by teenage students. Any mishandling of student data is a legal liability under COPPA and FERPA, not just a bug.
+
+Start by detecting which platforms are in use:
+- Full-stack app — package.json, API routes, or a web server
+- n8n — workflow JSON exports or n8n references
+- Google Apps Script — .gs files or appsscript.json
+- Slack — Slack API calls, bot tokens, or webhook URLs
+- Email — SMTP config, email API calls, or email-reading logic
+- AI/LLM — calls to OpenAI, Anthropic, or any other model API
+
+Only run sections relevant to the detected platforms. For every issue found: show the file and line, explain the risk, and give the fix. If a section is clean, say so explicitly.
+
+---
+
+## PART 1 — AUDIT
+
+### STUDENT DATA & LEGAL COMPLIANCE — All platforms
+This section is mandatory regardless of platform. Do not skip it.
+
+- Does this project access, store, process, or transmit any data belonging to students under 18 — including names, emails, ages, course progress, scores, or any identifier that could be linked to a minor? If yes, flag every location.
+- Is any student data being used in a development or test environment? Real student data must never leave production systems.
+- Is any student data being sent to an external AI/LLM API as prompt content, context, or fine-tuning data? This is a potential FERPA/COPPA violation. Flag every instance.
+- Is there a documented data retention policy for any student data stored by this project?
+- Are there any fields that collect date of birth or age? If yes, is there logic to apply stricter handling for users under 18?
+- Is student PII appearing in logs, error messages, analytics events, or third-party monitoring tools?
+
+### SECRETS & ENV
+- Are any API keys, secrets, or credentials hardcoded anywhere in the codebase?
+- Are credentials or tokens appearing in any log output?
+- Is .env and all variants in .gitignore?
+- Are all secrets accessed via process.env and never passed as plaintext between files?
+
+### AUTHENTICATION & AUTHORIZATION
+- Are all protected routes covered by auth middleware — including API routes, not just UI pages?
+- On every mutating endpoint (POST/PUT/PATCH/DELETE), is resource ownership verified server-side?
+- Is any endpoint accepting a userId from the request body that should instead come from the session?
+- Are admin-only routes gated by role check, not just login state?
+
+### AI / LLM — if detected
+- Is any student data included in prompts sent to an external model API? Flag every instance.
+- Is user-supplied input passed directly into a prompt without sanitization?
+- Is AI-generated output rendered in the UI as raw HTML without sanitization?
+- Are model API keys stored securely in environment variables — never hardcoded or exposed to the client?
+- Is the model being called from the client side (browser/frontend)? If yes, the API key is exposed to every user — this must be moved server-side immediately.
+
+### GENERAL
+- Are console.log or logger calls emitting PII, tokens, or passwords?
+- Are there TODO or FIXME comments related to security, auth, or data handling?
+- Are dependencies free of known high/critical vulnerabilities? Run npm audit or equivalent.
+- Are inactive workflows, scripts, or services disabled or deleted?
+
+---
+
+## PART 2 — CLAUDE.md BOOTSTRAP
+
+After completing the audit, check for a CLAUDE.md at the project root.
+- If it does not exist, create it.
+- If it exists, extend it with any rules below that are missing.
+- Show me the full final file contents and wait for my approval before continuing.</pre>
+      <button class="audit-copy" onclick="copyAudit(this)" aria-label="Copy full security audit prompt">📋 Copy Full Audit Prompt</button>
+    </div>
+
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--text);margin-bottom:1rem;">The Non-Negotiable Rules</h3>
+    <p style="font-size:14px;color:var(--text2);margin-bottom:1.5rem;line-height:1.7;">Even if you never write a line of code, these are the rules every Aceable vibe coder needs to know. If Claude ever suggests something that breaks these rules — stop, don't do it, and post in <strong>#guild-ai</strong>.</p>
+
+    <div class="security-rules" role="list">
+      <div class="sec-rule red" role="listitem">
+        <p class="rule-icon" aria-hidden="true">🚫</p>
+        <h4>Never share student data with AI</h4>
+        <p>Never include student names, emails, ages, scores, or any identifier in a prompt to Claude or any other AI. This is a COPPA and FERPA violation — not just a bug.</p>
+      </div>
+      <div class="sec-rule red" role="listitem">
+        <p class="rule-icon" aria-hidden="true">🚫</p>
+        <h4>Never hardcode passwords or API keys</h4>
+        <p>Never put passwords, API keys, or secrets directly into your code or files. They always go in environment variables. If you see one in code, it's a security incident.</p>
+      </div>
+      <div class="sec-rule red" role="listitem">
+        <p class="rule-icon" aria-hidden="true">🚫</p>
+        <h4>Never connect personal email to automation</h4>
+        <p>Your personal work email must never be connected to any automation, bot, or AI tool. Only use designated group or service accounts (support@, notifications@).</p>
+      </div>
+      <div class="sec-rule" role="listitem">
+        <p class="rule-icon" aria-hidden="true">✅</p>
+        <h4>Run the audit on every project</h4>
+        <p>Before sharing or deploying anything, paste Kevin's audit prompt into Claude and let it run. It takes less than a minute and catches issues before they become problems.</p>
+      </div>
+      <div class="sec-rule" role="listitem">
+        <p class="rule-icon" aria-hidden="true">✅</p>
+        <h4>Use synthetic data for testing</h4>
+        <p>When building or testing anything, use made-up data. Never use real student records — even in development or for a quick test.</p>
+      </div>
+      <div class="sec-rule" role="listitem">
+        <p class="rule-icon" aria-hidden="true">✅</p>
+        <h4>When in doubt, ask in #guild-ai</h4>
+        <p>If Claude suggests something that feels off, or you're not sure if something is safe — stop and ask. Kevin, Peter, and the team are there to help.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GLOSSARY -->
+<section id="glossary" class="bg-lt" aria-labelledby="gloss-title">
+  <div class="inner">
+    <p class="sec-label">Plain English</p>
+    <h2 class="sec-title" id="gloss-title">Jargon Decoder</h2>
+    <p class="sec-desc">Tech has a lot of words with extremely unhelpful names. Here's the plain English version.</p>
+    <div class="gloss-grid" role="list">
+
+      <div class="gloss-card" role="listitem">
+        <p class="gloss-term">Terminal <span class="gloss-aka">also: CLI, command line</span></p>
+        <p class="gloss-plain">"It's just a text box"</p>
+        <p class="gloss-desc">A place where you type instructions and your computer follows them. Not hacking. Not scary. Just typing.</p>
+      </div>
+
+      <div class="gloss-card" role="listitem">
+        <p class="gloss-term">Prompt</p>
+        <p class="gloss-plain">"The instruction you give AI"</p>
+        <p class="gloss-desc">What you type to Claude. Better prompts = better results. Like giving directions — the more specific, the better.</p>
+      </div>
+
+      <div class="gloss-card" role="listitem">
+        <p class="gloss-term">Repository <span class="gloss-aka">repo</span></p>
+        <p class="gloss-plain">"A folder with version history"</p>
+        <p class="gloss-desc">Like a Google Doc with track changes, but for any type of file. Lives on GitHub. "Clone the repo" = download the folder.</p>
+      </div>
+
+      <div class="gloss-card" role="listitem">
+        <p class="gloss-term">Git</p>
+        <p class="gloss-plain">"Save As, but on steroids"</p>
+        <p class="gloss-desc">A tool that tracks every change to your files over time. "Commit your changes" = save a snapshot of your work.</p>
+      </div>
+
+      <div class="gloss-card" role="listitem">
+        <p class="gloss-term">Directory</p>
+        <p class="gloss-plain">"A folder. That's it."</p>
+        <p class="gloss-desc">Developers call folders "directories" because they like sounding fancy. "Navigate to the directory" = go to the folder.</p>
+      </div>
+
+      <div class="gloss-card" role="listitem">
+        <p class="gloss-term">Context Window</p>
+        <p class="gloss-plain">"Claude's short-term memory"</p>
+        <p class="gloss-desc">How much text Claude can "remember" in one conversation. Long chats use it up. Start fresh sessions for new tasks.</p>
+      </div>
+
+      <div class="gloss-card" role="listitem">
+        <p class="gloss-term">MCP</p>
+        <p class="gloss-plain">"A plugin that connects Claude to other tools"</p>
+        <p class="gloss-desc">Model Context Protocol. Lets Claude Code plug into Slack, Google Drive, Jira, etc. Run /security-review before using any new one.</p>
+      </div>
+
+      <div class="gloss-card" role="listitem">
+        <p class="gloss-term">Deploy</p>
+        <p class="gloss-plain">"Put it on the internet"</p>
+        <p class="gloss-desc">Making something available for people to use, usually by hosting it online. Like publishing a blog post, but for any project.</p>
+      </div>
+
+      <div class="gloss-card" role="listitem">
+        <p class="gloss-term">Hallucination</p>
+        <p class="gloss-plain">"When AI makes stuff up"</p>
+        <p class="gloss-desc">When Claude confidently generates information that sounds correct but is wrong. Always review AI output for anything important.</p>
+      </div>
+
+      <div class="gloss-card" role="listitem">
+        <p class="gloss-term">Localhost</p>
+        <p class="gloss-plain">"Your computer pretending to be a website"</p>
+        <p class="gloss-desc">A way to test something on your own computer before sharing it. Only you can see it. Usually shows as localhost:3000 in your browser.</p>
+      </div>
+
+      <div class="gloss-card" role="listitem">
+        <p class="gloss-term">Pull Request <span class="gloss-aka">PR</span></p>
+        <p class="gloss-plain">"Raise your hand to submit changes"</p>
+        <p class="gloss-desc">A proposal to merge your changes into a shared project. Like saying "I made some edits, can someone review them?"</p>
+      </div>
+
+      <div class="gloss-card" role="listitem">
+        <p class="gloss-term">CLAUDE.md</p>
+        <p class="gloss-plain">"Claude's memory file for your project"</p>
+        <p class="gloss-desc">A file you create that teaches Claude your preferences, style, and project context. It reads this every session so you don't have to repeat yourself.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer role="contentinfo">
+  <p class="footer-logo">Ace<span>.AI</span></p>
+  <p>Your internal AI hub at Aceable. Built with Claude Code by the Aceable team.</p>
+  <p>Questions or suggestions? Drop them in <a href="https://aceableai.slack.com/channels/guild-ai" target="_blank" rel="noopener">#guild-ai</a> on Slack.</p>
+  <nav class="footer-links" aria-label="Footer links">
+    <a href="#get-started">Get Started</a>
+    <a href="#learn">Learn</a>
+    <a href="#prompts">Prompts</a>
+    <a href="#resources">Resources</a>
+    <a href="#faq">FAQ</a>
+    <a href="#policy">Policy</a>
+    <a href="#security">Security</a>
+    <a href="#glossary">Glossary</a>
+  </nav>
+</footer>
+
+<script>
+function copyAudit(btn) {
+  const text = document.getElementById('auditPrompt').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied! Now paste into Claude Code';
+    btn.classList.add('ok');
+    setTimeout(() => { btn.textContent = '📋 Copy Full Audit Prompt'; btn.classList.remove('ok'); }, 3000);
+  });
+}
+
+function filterPrompts(cat) {
+  const cards = document.querySelectorAll('.prompt-card');
+  const btns = document.querySelectorAll('.filter-btn');
+  btns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
+  event.target.classList.add('active');
+  event.target.setAttribute('aria-pressed', 'true');
+  cards.forEach(c => {
+    if (cat === 'all' || c.dataset.cat === cat) { c.removeAttribute('hidden'); }
+    else { c.setAttribute('hidden', ''); }
+  });
+}
+
+function copyPrompt(btn) {
+  const text = btn.previousElementSibling.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('ok');
+    setTimeout(() => { btn.textContent = 'Copy prompt'; btn.classList.remove('ok'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>
